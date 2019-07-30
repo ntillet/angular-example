@@ -1,7 +1,3 @@
-export interface IUserList {
-    users: IUser[];
-}
-
 export interface IUser {
     name: {
       first: string,

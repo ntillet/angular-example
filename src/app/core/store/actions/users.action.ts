@@ -1,9 +1,9 @@
 import { Action } from '@ngrx/store';
-import { IUserList, IUser } from '../../models/users.model';
+import { IUser } from '../../models/users.model';
 
-export const LOAD_USER_LIST = '[PROJECT] Load User List';
-export const LOAD_USER_LIST_SUCCESS = '[PROJECT] Load User List Success';
-export const SELECT_USER = '[PROJECT] Select User';
+export const LOAD_USER_LIST = '[USERS] Load User List';
+export const LOAD_USER_LIST_SUCCESS = '[USERS] Load User List Success';
+export const SELECT_USER = '[USERS] Select User';
 
 export class LoadUserListAction implements Action {
     readonly type = LOAD_USER_LIST;
@@ -12,7 +12,7 @@ export class LoadUserListAction implements Action {
 
 export class LoadUserListSuccessAction implements Action {
     readonly type = LOAD_USER_LIST_SUCCESS;
-    constructor(public payload: IUserList) { }
+    constructor(public payload: IUser[]) { }
 }
 
 export class SelectUserAction implements Action {

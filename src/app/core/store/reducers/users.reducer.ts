@@ -1,8 +1,8 @@
 import * as UserActions from '../actions/users.action';
-import { IUser, IUserList } from '../../models/users.model';
+import { IUser } from '../../models/users.model';
 
 export interface UsersState {
-    userList: IUserList;
+    userList: IUser[];
     selectedUser: IUser;
     error?: any;
 }

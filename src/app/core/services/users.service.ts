@@ -1,26 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-
-import { map } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import * as UsersActions from '../../core/store/actions/users.action';
+import * as fromRoot from '../../core/store';
 import { IUser } from '../models/users.model';
+
 
 @Injectable()
 export class UsersService {
+    constructor(
+        protected store: Store<fromRoot.State>
+    ) { }
 
-  private api = 'https://randomuser.me/api';
+    fetchUserList(): Observable<IUser[]> {
+        return this.store.select(fromRoot.getUserList);
+    }
 
-  constructor(private http: Http) { }
-
-  /**
-   * @author Nicolas Tillet
-   * @desc Gets the list of users from randomuser.me
-   */
-  getUsers(amount = 20): Observable<IUser[]> {
-    let url = `${this.api}&results=${amount.toString()}`;
-
-    return this.http.get(url).pipe(
-      map(response => response.json().results || [])
-    );
-  }
+    loadUserList(): void {
+        this.store.dispatch(new UsersActions.LoadUserListAction());
+    }
 }
