@@ -17,6 +17,6 @@ export class UsersService {
     }
 
     loadUserList(): void {
-        this.store.dispatch(new UsersActions.LoadUserListAction());
+        this.store.dispatch(UsersActions.loadUserListAction());
     }
 }

@@ -2,17 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
-import { UsersComponent } from './users.component';
 
-// import { UserExistsGuard } from '@example-app/user/guards';
+// Won't implement it but it's a good idea to have guards
+// import { UserExistsGuard } from '@usersapp/user/guards';
 
-export const routes: Routes = [{
-    path: '', component: UsersComponent,
-    children: [
-        { path: 'userlist', component: UserListComponent, pathMatch: 'full' },
-        { path: ':id', component: UserDetailComponent/*, canActivate: [UserExistsGuard] */ },
-    ]
-}];
+export const routes: Routes = [
+    { path: 'list', component: UserListComponent },
+    { path: ':username', component: UserDetailComponent/*, canActivate: [UserExistsGuard] */ },
+];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],

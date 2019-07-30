@@ -18,4 +18,3 @@ export const getUserState = (state: State) => state.users;
 
 // User Selectors
 export const getUserList = createSelector(getUserState, fromUsers.getUserList);
-export const getSelectedUser = createSelector(getUserState, fromUsers.getSelectedUser);

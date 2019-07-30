@@ -11,4 +11,9 @@ export interface IUser {
     login: {
         username: string
     };
+    location: {
+      street: string;
+      city: string;
+      state: string;
+    }
 }

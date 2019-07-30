@@ -1,0 +1,27 @@
+.fullname {
+    width: 20%;
+}
+
+.address {
+    width: 45%;
+}
+
+.email {
+    width: 30%;
+}
+
+.username {
+    width: 15%;
+}
+
+.button {
+    width: 30px;
+}
+
+div {
+    padding: 5px;
+}
+
+.row {
+    cursor: pointer;
+}

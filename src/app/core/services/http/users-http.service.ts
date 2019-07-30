@@ -17,7 +17,7 @@ export class UsersHttpService {
      * @desc Gets the list of users from randomuser.me
      */
     getUsers(amount = 20): Observable<IUser[]> {
-        let url = `${this.api}/?results=${amount.toString()}`;
+        let url = `${this.api}/?seed=ntillet&results=${amount.toString()}`;
 
         return this.httpClient.get(url).pipe(
             map((response: { results: [] }) => response.results)

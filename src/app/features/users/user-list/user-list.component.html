@@ -1,1 +1,35 @@
-<app-user-list-item *ngFor="let user of userList" [user]="user"></app-user-list-item>
+<mat-table class="mat-elevation-z8" [dataSource]="userList">
+    <ng-container matColumnDef="fullname">
+        <div *matHeaderCellDef class="fullname">Fullname</div>
+        <div *matCellDef="let user" class="fullname">{{user.name.last}}, {{user.name.first}}</div>
+    </ng-container>
+
+    <ng-container matColumnDef="address">
+        <div *matHeaderCellDef class="address">Address</div>
+        <div *matCellDef="let user" class="address">{{getFormattedAddress(user)}}</div>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+        <div *matHeaderCellDef class="email">Email</div>
+        <div *matCellDef="let user" class="email">{{user.email}}</div>
+    </ng-container>
+
+    <ng-container matColumnDef="username">
+        <div *matHeaderCellDef class="username">Username</div>
+        <div *matCellDef="let user" class="username">{{user.login.username}}</div>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+        <div *matHeaderCellDef class="button"></div>
+        <div *matCellDef="let user" class="button">E</div>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+        <div *matHeaderCellDef class="button">Username</div>
+        <div *matCellDef="let user" class="button">X</div>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let user; columns: displayedColumns" class="row" (click)="openUser(user)"></mat-row>
+
+</mat-table> 
