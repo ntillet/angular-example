@@ -1,5 +1,73 @@
 <mat-card *ngIf="user">
+    <mat-card-header>
+        <img mat-card-avatar [src]="user.picture.thumbnail" />
+        <mat-card-title>{{user.login.username}}</mat-card-title>
+    </mat-card-header>
     <mat-card-content>
-        <p [innerHtml]="username"></p>
+        <form [formGroup]="editForm">
+            <div class="form-row" formGroupName="login">
+                <div>
+                    <span>Username: </span>
+                    <input [readonly]="true" class="viewOnly" matInput type="text" formControlName="username">
+                </div>
+            </div>
+            <div class="form-row" formGroupName="name">
+                <div>
+                    <span>Name: </span>
+                    <input [readonly]="!isEditing" [ngClass]="{viewOnly: !isEditing}" matInput type="text"
+                        formControlName="first">
+                </div>
+                <div>
+                    <span>Lastname: </span>
+                    <input [readonly]="!isEditing" [ngClass]="{viewOnly: !isEditing}" matInput type="text"
+                        formControlName="last">
+                </div>
+            </div>
+            <div class="form-row">
+                <div>
+                    <span>Phone: </span>
+                    <input [readonly]="true" class="viewOnly" matInput type="text" formControlName="phone">
+                </div>
+            </div>
+            <div class="form-row">
+                <div>
+                    <span>Email: </span>
+                    <input [readonly]="!isEditing" [ngClass]="{viewOnly: !isEditing}" matInput type="text"
+                        formControlName="email">
+                </div>
+            </div>
+            <div class="form-row" formGroupName="picture">
+                <div>
+                    <span>Picture URL: </span>
+                    <input [readonly]="true" class="viewOnly" matInput type="text" formControlName="thumbnail">
+                </div>
+            </div>
+            <div class="form-row" formGroupName="location">
+                <div>
+                    <span>Street: </span>
+                    <input [readonly]="true" class="viewOnly" matInput type="text" formControlName="street">
+                </div>
+                <div>
+                    <span>City: </span>
+                    <input [readonly]="true" class="viewOnly" matInput type="text" formControlName="city">
+                </div>
+                <div>
+                    <span>State: </span>
+                    <input [readonly]="true" class="viewOnly" matInput type="text" formControlName="state">
+                </div>
+            </div>
+
+        </form>
     </mat-card-content>
+    <mat-card-actions style="text-align: center">
+        <div *ngIf="!isEditing" class="buttons">
+            <button mat-button class="mat-elevation-z5" (click)="edit()">EDIT</button>
+            <button mat-button class="mat-elevation-z5" color="error" (click)="delete()">DELETE</button>
+        </div>
+        <div *ngIf="isEditing" class="buttons">
+            <button mat-button class="mat-elevation-z5" (click)="save()">SAVE</button>
+            <button mat-button class="mat-elevation-z5" color="error" (click)="edit(false)">CANCEL</button>
+        </div>
+    </mat-card-actions>
 </mat-card>
+<button *ngIf="user" mat-mini-fab color="primary" (click)="back()" class="back-button">Back</button>

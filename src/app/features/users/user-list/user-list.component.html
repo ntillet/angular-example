@@ -1,35 +1,46 @@
-<mat-table class="mat-elevation-z8" [dataSource]="userList">
-    <ng-container matColumnDef="fullname">
-        <div *matHeaderCellDef class="fullname">Fullname</div>
-        <div *matCellDef="let user" class="fullname">{{user.name.last}}, {{user.name.first}}</div>
-    </ng-container>
+<div class="mat-elevation-z8 user-list">
+    <mat-table [dataSource]="userListDS" matSort matSortActive="fullname" matSortDirection="asc">
+        <ng-container matColumnDef="fullname">
+            <div *matHeaderCellDef class="fullname" mat-sort-header>Fullname</div>
+            <div *matCellDef="let user" class="fullname">{{user.fullname}}</div>
+        </ng-container>
 
-    <ng-container matColumnDef="address">
-        <div *matHeaderCellDef class="address">Address</div>
-        <div *matCellDef="let user" class="address">{{getFormattedAddress(user)}}</div>
-    </ng-container>
+        <ng-container matColumnDef="address">
+            <div *matHeaderCellDef class="address">Address</div>
+            <div *matCellDef="let user" class="address">{{user.fullAddress}}</div>
+        </ng-container>
 
-    <ng-container matColumnDef="email">
-        <div *matHeaderCellDef class="email">Email</div>
-        <div *matCellDef="let user" class="email">{{user.email}}</div>
-    </ng-container>
+        <ng-container matColumnDef="email">
+            <div *matHeaderCellDef class="email" mat-sort-header>Email</div>
+            <div *matCellDef="let user" class="email">{{user.email}}</div>
+        </ng-container>
 
-    <ng-container matColumnDef="username">
-        <div *matHeaderCellDef class="username">Username</div>
-        <div *matCellDef="let user" class="username">{{user.login.username}}</div>
-    </ng-container>
+        <ng-container matColumnDef="username">
+            <div *matHeaderCellDef class="username">Username</div>
+            <div *matCellDef="let user" class="username">{{user.login.username}}</div>
+        </ng-container>
 
-    <ng-container matColumnDef="edit">
-        <div *matHeaderCellDef class="button"></div>
-        <div *matCellDef="let user" class="button">E</div>
-    </ng-container>
+        <ng-container matColumnDef="edit">
+            <div *matHeaderCellDef class="button"></div>
+            <div *matCellDef="let user" class="button" (click)="edit(user, $event)">
+                <i class="material-icons">edit</i>
+            </div>
+        </ng-container>
 
-    <ng-container matColumnDef="delete">
-        <div *matHeaderCellDef class="button">Username</div>
-        <div *matCellDef="let user" class="button">X</div>
-    </ng-container>
+        <ng-container matColumnDef="delete">
+            <div *matHeaderCellDef class="button"></div>
+            <div *matCellDef="let user" class="button" (click)="delete(user, $event)">
+                <i class="material-icons">delete</i>
+            </div>
+        </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let user; columns: displayedColumns" class="row" (click)="openUser(user)"></mat-row>
+        <mat-header-row *matHeaderRowDef="displayedColumns" class="header-row"></mat-header-row>
+        <mat-row *matRowDef="let user; columns: displayedColumns" class="row" (click)="openUser(user)" [ngClass]="{'highlight': olderUsername == user.login.username}"></mat-row>
 
-</mat-table> 
+    </mat-table>
+    <mat-paginator pageSize="10" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+<div class="flex-break"></div>
+<div>
+    <button mat-raised-button color="primary" (click)="showOlderUser()">Highlight older user</button>
+</div>

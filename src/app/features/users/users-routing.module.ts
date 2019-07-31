@@ -7,7 +7,8 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 // import { UserExistsGuard } from '@usersapp/user/guards';
 
 export const routes: Routes = [
-    { path: 'list', component: UserListComponent },
+    { path: '', redirectTo: 'list', pathMatch: 'full' },
+    { path: 'list', component: UserListComponent, pathMatch: 'full' },
     { path: ':username', component: UserDetailComponent/*, canActivate: [UserExistsGuard] */ },
 ];
 

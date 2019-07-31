@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { IUser } from '../../models/users.model';
+import { Observable, of } from 'rxjs';
+import { User } from '../../models/users.model';
 
 @Injectable()
 export class UsersHttpService {
@@ -16,11 +16,33 @@ export class UsersHttpService {
      * @author Nicolas Tillet
      * @desc Gets the list of users from randomuser.me
      */
-    getUsers(amount = 20): Observable<IUser[]> {
-        let url = `${this.api}/?seed=ntillet&results=${amount.toString()}`;
+    getUsers(amount = 20): Observable<any[]> {
+        const url = `${this.api}/?seed=ntillet&results=${amount.toString()}`;
 
         return this.httpClient.get(url).pipe(
-            map((response: { results: [] }) => response.results)
+            map((response: { results: any[] }) => response.results)
         );
+    }
+
+    /**
+     * @author Nicolas Tillet
+     * @desc Deletes an user
+     */
+    deleteUser(username: string): Observable<{}> {
+        const url = `${this.api}/users/${username}`;
+        // To avoid errors
+        return of(username);
+        return this.httpClient.delete(url);
+    }
+
+    /**
+     * @author Nicolas Tillet
+     * @desc Updates an user
+     */
+    updateUser(user: User): Observable<User> {
+        const url = `${this.api}/users/${user.login.username}`;
+        // To avoid errors
+        return of(user);
+        return this.httpClient.put<User>(url, user);
     }
 }
