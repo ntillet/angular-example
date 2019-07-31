@@ -2,12 +2,12 @@
 
 ## Installation
 
-To install clone the repository <code>git clone https://github.com/ntillet/angular-example.git</code>
+To install clone the repository <code>git clone https://github.com/ntillet/angular-example.git</code> or download as zip.<br />
+After cloning, navigate in the terminal to the project folder and run <code>npm install</code>
 
 ## Development server
 
-Open your terminal and set the folder that you just cloned.
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve` or `ng serve --aot` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Build
 
