@@ -2,7 +2,7 @@
 
 ## Installation
 
-To install clone the repository git clone https://github.com/ntillet/angular-example.git
+To install clone the repository <code>git clone https://github.com/ntillet/angular-example.git</code>
 
 ## Development server
 
